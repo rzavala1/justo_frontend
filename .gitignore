@@ -32,7 +32,7 @@ yarn-error.log*
 # Ignorar archivos de caché y compilación
 .cache/
 *.log
-.next/cache/
+.next/*
 
 
 # Ignorar archivos generados por herramientas de construcción
