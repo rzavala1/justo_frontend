@@ -32,6 +32,8 @@ yarn-error.log*
 # Ignorar archivos de caché y compilación
 .cache/
 *.log
+.next/cache/
+
 
 # Ignorar archivos generados por herramientas de construcción
 webpack-stats.json
