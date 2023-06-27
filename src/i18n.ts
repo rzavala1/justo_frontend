@@ -9,12 +9,23 @@ const messages = {
       password: "Ingresa tu contraseña",
       passwordLength: "La contraseña debe tener al menos 8 caracteres",
       passwordRequired: "La contraseña es obligatoria",
+      name: "Ingresa tu nombre",
+      nameRequired: "El nombre es obligatorio",
     },
     login: {
       emailLabel: "Correo electrónico",
       passwordLabel: "Contraseña",
       loginButton: "Iniciar sesión",
+      title:"Inicio de sesión",
+      register:"Registro de usuario"
+    },register: {
+      nameLabel: "Nombre",
+      emailLabel: "Correo electrónico",
+      passwordLabel: "Contraseña",
+      registerButton: "Crear usuario",
+      title: "Registro de usuario",
     },
+
   },
 };
 

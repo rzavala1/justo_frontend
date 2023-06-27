@@ -9,7 +9,7 @@ const theme = createTheme({
       main: '#FF0000', // Color secundario (rojo)
     },
     background: {
-      default: '#303030', // Color de fondo (gris oscuro)
+      default: '#e4e4e4', // Color de fondo (gris oscuro)
       paper: '#1E1E1E', // Color de fondo para componentes de papel (gris más oscuro)
     },
     text: {

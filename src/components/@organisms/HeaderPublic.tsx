@@ -6,7 +6,7 @@ const Header: React.FC = () => {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" component="div">
-          Spy Agency | Inicio de sesión
+          Spy Agency
         </Typography>
       </Toolbar>
     </AppBar>

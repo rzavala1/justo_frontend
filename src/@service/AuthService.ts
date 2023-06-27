@@ -1,10 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
-import { LOGIN_USER } from "../apollo/mutations/AuthMutation";
+import { LOGIN_USER,REGISTER_USER } from "../apollo/mutations/AuthMutation";
 import Cookie from "js-cookie";
+import { userData } from '../types/UserTypes';
+import { throws } from 'assert';
 
 
 export function useLoginService() {
-  const [loginMutation, { loading, error }] = useMutation(LOGIN_USER);
+  const [loginMutation] = useMutation(LOGIN_USER);
+  const [registerMutation,{ error }] = useMutation(REGISTER_USER);
 
   async function login(email: string, password: string) {
     try {
@@ -20,5 +23,17 @@ export function useLoginService() {
     }
   }
 
-  return { login, loading, error };
+  async function register(userData:userData) {
+    try {
+      const { data } = await registerMutation({
+        variables:{
+          userData
+        }
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  return { login, register, };
 }
