@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app';
 import { ApolloProvider } from '@apollo/client';
 import { Provider as JotaiProvider } from 'jotai';
-import client from '../graphql/client';
+import client from '../apollo/client';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../styles/theme';
 

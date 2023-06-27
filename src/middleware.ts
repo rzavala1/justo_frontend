@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   const cookie = request.cookies.get('token')?.value;
 
   if(cookie===undefined){
-    if(request.nextUrl.pathname === '/registrer'){
+    if(request.nextUrl.pathname === '/register'){
       return NextResponse.next();
     }else if(request.nextUrl.pathname === '/login'){
       return NextResponse.next();
@@ -14,7 +14,7 @@ export function middleware(request: NextRequest) {
       return NextResponse.rewrite(new URL('/login', request.url))
     }
   }else{
-    if(request.nextUrl.pathname === '/registrer'){
+    if(request.nextUrl.pathname === '/register'){
       return NextResponse.rewrite(new URL('/', request.url))
     }else if(request.nextUrl.pathname === '/login'){
       return NextResponse.rewrite(new URL('/', request.url))

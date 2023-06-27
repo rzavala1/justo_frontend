@@ -1,22 +1,22 @@
 import React from 'react';
 import { Container, Box } from '@mui/material';
-import Header from '../@organisms/Header';
+import HeaderPublic from '../@organisms/HeaderPublic';
 import Footer from '../@organisms/Footer';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const LayoutPublic: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <Box>
-      <Header />
+    <Box sx={{ backgroundColor: 'background.default' }}>
+      <HeaderPublic />
       <Container maxWidth="lg">
-        <Box marginTop={2} sx={{ backgroundColor: 'background.default' }}>{children}</Box>
+        <Box marginTop={2}>{children}</Box>
       </Container>
       <Footer />
     </Box>
   );
 };
 
-export default Layout;
+export default LayoutPublic;

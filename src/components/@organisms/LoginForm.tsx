@@ -1,36 +1,48 @@
-import React, { useState } from 'react';
-import { TextField, Button } from '@mui/material';
+import React from 'react';
+import { Box, Button } from '@mui/material';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import { intl } from '../../i18n';
+import LoginFormFields from '../@molecules/LoginFormFields';
+import { LOGIN_USER } from "../../apollo/mutations/AuthMutation";
+import { useMutation } from '@apollo/client';
 
-interface LoginFormProps {
-  onSubmit: (username: string, password: string) => void;
-}
+const validationSchema = yup.object({
+  email: yup.string().email(intl.formatMessage({ id: 'validation.emailInvalid' })).required(intl.formatMessage({ id: 'validation.emailRequired' })),
+  password: yup.string().min(8, intl.formatMessage({ id: 'validation.passwordLength' })).required(intl.formatMessage({ id: 'validation.passwordRequired' })),
+});
 
-const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const LoginForm: React.FC = () => {
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit(username, password);
-  };
+  const [loginMutation, { loading, error }] = useMutation(LOGIN_USER, {
+    onCompleted: (data) => {
+      console.log(data);
+    },
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      try {
+        await loginMutation({
+          variables: { email: values.email, password: values.password },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  });
 
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-        label="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <TextField
-        label="Password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <Button type="submit" variant="contained" color="primary">
-        Login
-      </Button>
-    </form>
+    <Box sx={{ maxWidth: 400, mx: 'auto'}}>
+      <form onSubmit={formik.handleSubmit}>
+        <LoginFormFields formik={formik} />
+      </form>
+    </Box>
   );
 };
 
