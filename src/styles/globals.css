@@ -1,0 +1,11 @@
+body {
+  margin:0;
+}
+
+input{
+  background-color: #fff !important;
+  color: black !important;
+}
+.css-qshvj9-MuiFormLabel-root-MuiInputLabel-root{
+  color:rgb(20, 167, 220);
+}

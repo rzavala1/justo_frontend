@@ -1,11 +1,11 @@
 import React from 'react';
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { intl } from '../../i18n';
 import LoginFormFields from '../@molecules/LoginFormFields';
-import { LOGIN_USER } from "../../apollo/mutations/AuthMutation";
-import { useMutation } from '@apollo/client';
+import { useLoginService } from '@/@service/AuthService';
+import { useRouter } from 'next/router';
 
 const validationSchema = yup.object({
   email: yup.string().email(intl.formatMessage({ id: 'validation.emailInvalid' })).required(intl.formatMessage({ id: 'validation.emailRequired' })),
@@ -14,11 +14,8 @@ const validationSchema = yup.object({
 
 const LoginForm: React.FC = () => {
 
-  const [loginMutation, { loading, error }] = useMutation(LOGIN_USER, {
-    onCompleted: (data) => {
-      console.log(data);
-    },
-  });
+  const router = useRouter();
+  const { login, loading, error } = useLoginService();
 
   const formik = useFormik({
     initialValues: {
@@ -27,19 +24,14 @@ const LoginForm: React.FC = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      try {
-        await loginMutation({
-          variables: { email: values.email, password: values.password },
-        });
-      } catch (error) {
-        console.error(error);
-      }
+      await login(values.email, values.password);
+      router.push('/hits');
     },
   });
 
   return (
-    <Box sx={{ maxWidth: 400, mx: 'auto'}}>
-      <form onSubmit={formik.handleSubmit}>
+    <Box sx={{ maxWidth: 400, mx: 'auto' }}>
+      <form onSubmit={formik.handleSubmit} noValidate>
         <LoginFormFields formik={formik} />
       </form>
     </Box>

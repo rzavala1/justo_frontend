@@ -18,6 +18,8 @@ export function middleware(request: NextRequest) {
       return NextResponse.rewrite(new URL('/', request.url))
     }else if(request.nextUrl.pathname === '/login'){
       return NextResponse.rewrite(new URL('/', request.url))
+    }else if(request.nextUrl.pathname === '/'){
+      return NextResponse.rewrite(new URL('/hits', request.url))
     }else{
       return NextResponse.next();
     }
