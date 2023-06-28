@@ -6,7 +6,7 @@ const LogoutPage: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    Cookie.remove('token');
+    Cookie.remove('Authorization');
     router.push('/');
   }, [router]);
 

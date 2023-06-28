@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
 
-  const cookie = request.cookies.get('token')?.value;
+  const cookie = request.cookies.get('Authorization')?.value;
 
   if(cookie===undefined){
     if(request.nextUrl.pathname === '/register'){

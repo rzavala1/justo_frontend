@@ -9,9 +9,9 @@ interface LayoutProps {
 
 const LayoutPublic: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <Box sx={{ backgroundColor: 'background.default', height: "100vh" }}>
+    <Box sx={{ backgroundColor: 'background.default', height: "100%" }}>
       <HeaderPublic />
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{height:'85%'}}>
         <Box marginTop={2}>{children}</Box>
       </Container>
       <Footer />

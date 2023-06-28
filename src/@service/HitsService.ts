@@ -5,9 +5,5 @@ import {useQuery } from '@apollo/client';
 export function useHitsService() {
   const { loading, error, data } = useQuery(HITS_QUERY);
 
-  async function getHits() {
-    return data;
-  }
-
-  return { getHits };
+  return { data };
 }

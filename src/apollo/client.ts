@@ -1,21 +1,26 @@
-import { ApolloClient, createHttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import Cookie from "js-cookie";
-/*const httpLink = createHttpLink({
-  uri: 'https://localhost:4000/graphql',
-  credentials: 'same-origin', // O 'include' si es un dominio diferente
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+const httpLink = createHttpLink({
+  uri: API_URL,
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = Cookie.get("Authorization");
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? ` ${token}` : '__public',
+    },
+  };
 });
 
 const client = new ApolloClient({
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
-});*/
-
-const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
-  cache:new InMemoryCache(),
-  uri: "http://localhost:4000/graphql",
-  headers: {
-    authorization: Cookie.get("token") || "",
-  },
 });
 
 export default client;
