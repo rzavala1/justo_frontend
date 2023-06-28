@@ -5,16 +5,13 @@ export const HITS_QUERY = gql`
     hits {
     id
     status
-    target
-    hitmanId
-    hitman {
+    name
+    description
+    assignId
+    User {
       id
-      userId
-      user {
-        name
-        email
-        id
-      }
+      name
+      email
     }
   }
   }

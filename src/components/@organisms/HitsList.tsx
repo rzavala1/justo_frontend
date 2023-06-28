@@ -27,14 +27,15 @@ const HitsList: React.FC = () => {
                 </Typography>
                 <Box sx={{ maxWidth: '1280px', marginTop: 3 }}>
                     <TableOptions
-                        rows={["Tarjet", "Estatus", "Asignado", ""]}
+                        rows={["Nombre","Descripción", "Estatus", "Asignado", ""]}
                         data={
                             data?.hits?.map((v: any, index: number) => ({
                                 title: v?.id,
                                 columns: [
-                                    <p key={index}>{v?.target}</p>,
+                                    <p key={index}>{v?.name}</p>,
+                                    <p key={index}>{v?.description}</p>,
                                     <p key={index}>{v?.status}</p>,
-                                    <p key={index}>{v?.hitman?.user?.name}</p>,
+                                    <p key={index}>{v?.User?.name}</p>,
                                     <div className="flex" key={index}>
                                         <button
                                             onClick={() => {
