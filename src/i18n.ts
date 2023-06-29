@@ -33,7 +33,18 @@ const messages = {
       assignLabel: "Asignado a",
       createLabel: "Creado por",
       hitButton: "Modificar",
+      hitAdd: "Agregar",
       title: "Edición de hit",
+    },
+    hitmen: {
+      nameLabel: "Nombre", 
+      descriptionLabel: "Descripción",
+      statusLabel: "Estatus",
+      assignLabel: "Asignado a",
+      createLabel: "Creado por",
+      hitmenButton: "Modificar",
+      hitmenAdd: "Agregar",
+      title: "Agregar de hit",
     },
   },
 };

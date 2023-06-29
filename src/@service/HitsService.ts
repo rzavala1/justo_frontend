@@ -36,5 +36,5 @@ export function useHitsService() {
   }
 
   
-  return { data , update};
+  return { data , update, create};
 }

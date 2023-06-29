@@ -17,6 +17,7 @@ interface Props {
 const HitFormFields: React.FC<Props> = ({ formik, hitId }) => {
 
     const [hit, setHit] = useState<HitData>({});
+ 
     const { data: dataHit } = useQuery(HIT_BY_ID_QUERY, {
         variables: {
             hitId: Number(hitId)
