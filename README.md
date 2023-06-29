@@ -1,34 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend de la Agencia de Espionaje
 
-## Getting Started
+Este proyecto contiene el código fuente y los recursos para el frontend de la Agencia de Espionaje. Proporciona una interfaz de usuario interactiva para interactuar con la API y realizar tareas relacionadas con la agencia.
 
-First, run the development server:
+## Requisitos
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+- Node.js (versión 14.x.x o superior)
+
+## Instalación
+
+1. Clona el repositorio en tu máquina local:
+   
+```
+git clone https://github.com/tu-usuario/agencia-frontend.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Accede al directorio del proyecto:
+```
+cd agencia-frontend
+```
+   
+3. Instala las dependencias del proyecto:
+```
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Configuración
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Crea un archivo `.env` en la raíz del proyecto y el archivo .evn.example tiene las variables necesarias.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Asegúrate de reemplazar `http://localhost:4000/graphql` con la URL correcta de la API backend.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Ejecución
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Inicia la aplicación en modo de desarrollo:
+```
+   npm start
+```
+Esto iniciará la aplicación y podrás acceder a ella en [http://localhost:3000](http://localhost:3000) en tu navegador web.
 
-## Deploy on Vercel
+2. Explora la interfaz de usuario y realiza las tareas necesarias.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+
+
