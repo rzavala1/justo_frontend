@@ -42,6 +42,14 @@ const HitFormFields: React.FC<Props> = ({ formik, hitId }) => {
         { value: 'completed', label: 'Completo' },
     ];
 
+    const handleSelectChange = (value: string) => {
+        if(value="open"){
+            formik.setFieldValue('status', null);
+        }else{
+            formik.setFieldValue('status', value);
+        }
+    };
+
     return (
         <>
             <Box sx={{ padding: 3 }}>
@@ -74,7 +82,7 @@ const HitFormFields: React.FC<Props> = ({ formik, hitId }) => {
                         />
                     </FormControl>
                     <FormControl fullWidth sx={{ mb: 3 }}>
-                        <SelectOptions name="status" label="Estado" options={statusOptions} initialValue={hit?.status || ''} />
+                        <SelectOptions onChangeValue={handleSelectChange} name="status" label="Estado" options={statusOptions} initialValue={hit?.status || ''}/>
                     </FormControl>
                     <FormControl fullWidth sx={{ mb: 3 }}>
                         <TextField

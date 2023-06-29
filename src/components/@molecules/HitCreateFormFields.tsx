@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, FormControl, Typography } from '@mui/material';
 import TextField from '../@atoms/TextField';
 import { intl } from '../../i18n';
 import SelectOptions from '../@atoms/SelectOptions';
 import { HitData } from '@/types/HitsTypes';
+import Cookie from "js-cookie";
 
 interface Props {
     formik: any;
@@ -13,11 +14,26 @@ const HitCreateFormFields: React.FC<Props> = ({ formik }) => {
 
     const [hit, setHit] = useState<HitData>({});
 
+    useEffect(() => {
+        const user = Cookie.get("user");
+        if (user) {
+            const userJson = JSON.parse(user);
+            if (userJson.roleId !== 3) {
+
+            }
+        }
+    }, []);
+
     const statusOptions = [
+        { value: 'open', label: 'Abierto' },
         { value: 'assigned', label: 'Asignado' },
         { value: 'failed', label: 'Error' },
         { value: 'completed', label: 'Completo' },
     ];
+
+    const handleSelectChange = (value: string) => {
+        formik.setFieldValue('status', value);
+    };
 
     return (
         <>
@@ -50,7 +66,8 @@ const HitCreateFormFields: React.FC<Props> = ({ formik }) => {
                     />
                 </FormControl>
                 <FormControl fullWidth sx={{ mb: 3 }}>
-                    <SelectOptions name="status" label="Estado" options={statusOptions} initialValue={hit?.status || ''} />
+                    <SelectOptions onChangeValue={handleSelectChange} name="status" label="Estado" 
+                    options={statusOptions} initialValue={hit?.status || ''} />
                 </FormControl>
                 <FormControl fullWidth sx={{ mb: 3 }}>
                     <TextField

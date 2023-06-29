@@ -1,5 +1,5 @@
-import React from 'react';
-import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import React, { useState } from 'react';
+import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 
 interface Option {
   value: string;
@@ -11,17 +11,27 @@ interface Props {
   name: string;
   options: Option[];
   initialValue?: string;
+  onChangeValue: (value: string) => void;
 }
 
-const SelectOptions: React.FC<Props> = ({ label, options,initialValue, ...props }) => {
+const SelectOptions: React.FC<Props> = (props: Props) => {
+  const { label, options, initialValue } = props;
+  const [value, setValue] = useState(initialValue)
+
+  const handleChange = (event: SelectChangeEvent) => {
+    const selectedValue = event.target.value as string;
+    setValue(selectedValue);
+    props.onChangeValue(selectedValue);
+  };
 
   return (
-    <FormControl sx={{ backgroundColor:"#fff"}}>
+    <FormControl sx={{ backgroundColor: "#fff" }}>
       <InputLabel id={`${props.name}-label`}>{label}</InputLabel>
       <Select
         labelId={`${props.name}-label`}
         id={props.name}
-        value={initialValue || ''}
+        value={value || ''}
+        onChange={handleChange}
       >
         {options.map((option: Option) => (
           <MenuItem key={option.value} value={option.value} >

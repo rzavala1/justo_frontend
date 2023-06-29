@@ -5,16 +5,15 @@ import * as yup from 'yup';
 import { intl } from '../../i18n';
 import { useHitsService } from '@/@service/HitsService';
 import { useRouter } from 'next/router';
-import HitFormFields from '../@molecules/HitFormFields';
 import HitCreateFormFields from '../@molecules/HitCreateFormFields';
 
-const validationSchema = yup.object({
+/*const validationSchema = yup.object({
   name: yup.string().required(intl.formatMessage({ id: 'validation.required' })),
   description: yup.string().required(intl.formatMessage({ id: 'validation.required' })),
   status: yup.string().required(intl.formatMessage({ id: 'validation.required' })),
   assignId: yup.string().required(intl.formatMessage({ id: 'validation.required' })),
   createId: yup.string().required(intl.formatMessage({ id: 'validation.required' })),
-});
+});*/
 
 const HitCreateForm: React.FC = () => {
   const [showAlert, setShowAlert] = useState(false);
@@ -32,8 +31,8 @@ const HitCreateForm: React.FC = () => {
       assignId:0,
       createId:0,
     },
-    validationSchema: validationSchema,
     onSubmit: async (values) => {
+      console.info(values);
       try {
         setShowError(prevState => ({
           ...prevState,
@@ -77,7 +76,7 @@ const HitCreateForm: React.FC = () => {
         <form onSubmit={formik.handleSubmit} noValidate>
           <HitCreateFormFields formik={formik} />
           <Button variant="contained" color="primary" type="submit">
-            {intl.formatMessage({ id: 'hit.hitButton' })}
+            {intl.formatMessage({ id: 'hit.hitAdd' })}
           </Button>
         </form>
       </Box>
