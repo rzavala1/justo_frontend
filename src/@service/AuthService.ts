@@ -17,7 +17,9 @@ export function useLoginService() {
           password: password,
         },
       });
-      Cookie.set("Authorization", data.login);
+      Cookie.set("Authorization", data.login.token);
+
+      Cookie.set("user",JSON.stringify(data.login.user));
 
     } catch (error) {
       console.error(error);
