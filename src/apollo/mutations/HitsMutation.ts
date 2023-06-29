@@ -14,7 +14,7 @@ export const CREATE_HIT = gql`
 `;
 
 export const UPDATE_HIT = gql`
-  mutation updateHit($data: UpdateHitInput!, $id: Float!) {
+  mutation updateHit($data: UpdateHitInput!, $updateHitId: Float!) {
     updateHit(data: $data, id: $updateHitId) {
       id
     }

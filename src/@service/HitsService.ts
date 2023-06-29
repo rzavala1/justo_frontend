@@ -13,7 +13,7 @@ export function useHitsService() {
     try {
       const { data } = await updateMutation({
         variables:{
-          id:Number(hitId),
+          updateHitId:Number(hitId),
           data:hitData
         }
       });
