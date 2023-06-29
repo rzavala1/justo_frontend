@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -6,6 +5,7 @@ import { intl } from '../../i18n';
 import LoginFormFields from '../@molecules/LoginFormFields';
 import { useLoginService } from '@/@service/AuthService';
 import { useRouter } from 'next/router';
+
 
 const validationSchema = yup.object({
   email: yup.string().email(intl.formatMessage({ id: 'validation.emailInvalid' })).required(intl.formatMessage({ id: 'validation.emailRequired' })),
@@ -15,7 +15,7 @@ const validationSchema = yup.object({
 const LoginForm: React.FC = () => {
 
   const router = useRouter();
-  const { login, loading, error } = useLoginService();
+  const { login } = useLoginService();
 
   const formik = useFormik({
     initialValues: {

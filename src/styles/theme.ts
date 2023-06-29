@@ -3,18 +3,18 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#000000', // Color principal (negro)
+      main: '#000000', 
     },
     secondary: {
-      main: '#FF0000', // Color secundario (rojo)
+      main: '#FF0000', 
     },
     background: {
-      default: '#303030', // Color de fondo (gris oscuro)
-      paper: '#1E1E1E', // Color de fondo para componentes de papel (gris más oscuro)
+      default: '#e4e4e4',
+      paper: '#1E1E1E', 
     },
     text: {
-      primary: '#FFFFFF', // Color de texto principal (blanco)
-      secondary: '#CCCCCC', // Color de texto secundario (gris claro)
+      primary: '#FFFFFF', 
+      secondary: '#CCCCCC', 
     },
   },
 });
