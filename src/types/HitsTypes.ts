@@ -5,7 +5,7 @@ export interface HitData {
   description?: string;
   assignId?: number;
   createId?: number;
-  status?: string;
+  status?: string | null;
   createUser?: userConection;
   assignUser?: userConection;
 }

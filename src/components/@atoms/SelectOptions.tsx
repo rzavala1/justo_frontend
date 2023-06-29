@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 
 interface Option {
-  value: string;
+  value: string | undefined;
   label: string;
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, AlertTitle, Box, Button } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -6,6 +6,9 @@ import { intl } from '../../i18n';
 import { useHitsService } from '@/@service/HitsService';
 import { useRouter } from 'next/router';
 import HitCreateFormFields from '../@molecules/HitCreateFormFields';
+import Cookie from "js-cookie";
+import {userData} from '../../types/UserTypes';
+
 
 /*const validationSchema = yup.object({
   name: yup.string().required(intl.formatMessage({ id: 'validation.required' })),
@@ -18,33 +21,48 @@ import HitCreateFormFields from '../@molecules/HitCreateFormFields';
 const HitCreateForm: React.FC = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [showError, setShowError] = useState({ state: false, message: '' });
+  const [user, setUser]=useState<userData>({
+    id:0,
+    email: "",
+    name: "string",
+    password: "string",
+    roleId: 0,
+  });
   const router = useRouter();
-  const hitId = router.query.id as string;
 
   const { create } = useHitsService();
+
+  useEffect(() => {
+    const userC = Cookie.get("user");
+    if (userC) {
+      const userJson = JSON.parse(userC);
+      setUser(userJson);
+    }
+  }, []);
 
   const formik = useFormik({
     initialValues: {
       name: '',
       description: '',
       status: '',
-      assignId:0,
-      createId:0,
+      assignId: 0,
+      createId: 0,
     },
     onSubmit: async (values) => {
       console.info(values);
+      console.info(user)
       try {
         setShowError(prevState => ({
           ...prevState,
           state: false
         }));
         setShowAlert(false);
-        const response={
-          name:values?.name,
-          description:values?.description,
-          status:values?.status,
-          createId:values?.createId,
-          assignId:values?.assignId
+        const response = {
+          name: values?.name,
+          description: values?.description,
+          status: values?.status,
+          createId: user?.id,
+          assignId: Number(values?.assignId)
         }
         await create(response);
         setShowAlert(true);

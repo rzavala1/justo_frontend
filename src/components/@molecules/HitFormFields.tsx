@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, AlertTitle, Box, FormControl, Typography } from '@mui/material';
+import { Box, FormControl, Typography } from '@mui/material';
 import TextField from '../@atoms/TextField';
-import Button from '../@atoms/Button';
 import { intl } from '../../i18n';
 import SelectOptions from '../@atoms/SelectOptions';
-import { useHitsService } from '@/@service/HitsService';
 import { HIT_BY_ID_QUERY } from '@/apollo/queries/HitsQuery';
 import { useQuery } from '@apollo/client';
 import { HitData } from '@/types/HitsTypes';
