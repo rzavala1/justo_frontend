@@ -22,7 +22,7 @@ const HitsList: React.FC = () => {
                 </Typography>
                 <Box sx={{ maxWidth: '1280px', marginTop: 3 }}>
                     <TableOptions
-                        rows={["Nombre","Descripción", "Estatus", "Asignado", ""]}
+                        rows={["Nombre","Descripción", "Estatus", "Asignado", "Creado por", ""]}
                         data={
                             data?.hits?.map((v: any, index: number) => ({
                                 title: v?.id,
@@ -30,7 +30,8 @@ const HitsList: React.FC = () => {
                                     <p key={index}>{v?.name}</p>,
                                     <p key={index}>{v?.description}</p>,
                                     <p key={index}>{v?.status}</p>,
-                                    <p key={index}>{v?.User?.name}</p>,
+                                    <p key={index}>{v?.assignUser?.name}</p>,
+                                    <p key={index}>{v?.createUser?.name}</p>,
                                     <div className="flex" key={index}>
                                         <button
                                             onClick={() => {

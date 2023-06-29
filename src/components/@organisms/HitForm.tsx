@@ -1,32 +1,35 @@
 import React, { useState } from 'react';
-import { Alert, AlertTitle, Box } from '@mui/material';
+import { Alert, AlertTitle, Box, Button } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { intl } from '../../i18n';
-import { useLoginService } from '@/@service/AuthService';
+import { useHitsService } from '@/@service/HitsService';
 import { useRouter } from 'next/router';
 import HitFormFields from '../@molecules/HitFormFields';
 
 const validationSchema = yup.object({
-  name: yup.string().required(intl.formatMessage({ id: 'validation.nameRequired' })),
-  email: yup.string().email(intl.formatMessage({ id: 'validation.emailInvalid' })).required(intl.formatMessage({ id: 'validation.emailRequired' })),
-  password: yup.string().min(8, intl.formatMessage({ id: 'validation.passwordLength' })).required(intl.formatMessage({ id: 'validation.passwordRequired' })),
+  name: yup.string().required(intl.formatMessage({ id: 'validation.required' })),
+  description: yup.string().required(intl.formatMessage({ id: 'validation.required' })),
+  status: yup.string().required(intl.formatMessage({ id: 'validation.required' })),
+  assignId: yup.string().required(intl.formatMessage({ id: 'validation.required' })),
+  createId: yup.string().required(intl.formatMessage({ id: 'validation.required' })),
 });
 
 const HitForm: React.FC = () => {
   const [showAlert, setShowAlert] = useState(false);
-  const [showError, setShowError] = useState({state:false, message:''});
+  const [showError, setShowError] = useState({ state: false, message: '' });
   const router = useRouter();
-  const hitId  = router.query.id as string;
+  const hitId = router.query.id as string;
 
-  const { register } = useLoginService();
+  const { update } = useHitsService();
 
   const formik = useFormik({
     initialValues: {
-      roleId: 3,
       name: '',
-      email: '',
-      password: '',
+      description: '',
+      status: '',
+      assignId:2,
+      createId:10,
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -36,13 +39,20 @@ const HitForm: React.FC = () => {
           state: false
         }));
         setShowAlert(false);
-        await register(values);
+        const response={
+          name:values?.name,
+          description:values?.description,
+          status:values?.status,
+          createId:values?.createId,
+          assignId:values?.assignId
+        }
+        await update(response,hitId);
         setShowAlert(true);
-      } catch (error : unknown) {
+      } catch (error: unknown) {
         const errorMessage = (error as Error).message;
         setShowError({
-          state:true,
-          message:errorMessage
+          state: true,
+          message: errorMessage
         })
       }
     },
@@ -64,7 +74,10 @@ const HitForm: React.FC = () => {
       )}
       <Box sx={{ maxWidth: 400, mx: 'auto' }}>
         <form onSubmit={formik.handleSubmit} noValidate>
-          <HitFormFields formik={formik} hitId={hitId}/>
+          <HitFormFields formik={formik} hitId={hitId} />
+          <Button variant="contained" color="primary" type="submit">
+            {intl.formatMessage({ id: 'hit.hitButton' })}
+          </Button>
         </form>
       </Box>
     </>

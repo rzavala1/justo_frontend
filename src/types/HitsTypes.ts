@@ -1,7 +1,6 @@
 import { number } from "yup";
 
 export interface HitData {
-  id?: number;
   name?: string;
   description?: string;
   assignId?: number;

@@ -12,3 +12,14 @@ export const CREATE_HIT = gql`
     }
   }
 `;
+
+export const UPDATE_HIT = gql`
+  mutation updateHit($data: UpdateHitInput!, $id: Float!) {
+    updateHit(data: $data, id: $updateHitId) {
+      id
+    }
+  }
+`;
+
+
+

@@ -11,6 +11,7 @@ const messages = {
       passwordRequired: "La contraseña es obligatoria",
       name: "Ingresa tu nombre",
       nameRequired: "El nombre es obligatorio",
+      required: "Campo requerido",
     },
     login: {
       emailLabel: "Correo electrónico",
