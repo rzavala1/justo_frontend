@@ -1,7 +1,7 @@
 import HitsList from '@/components/@organisms/HitsList';
-import Layout from '../components/@templates/Layout';
+import Layout from '../../components/@templates/Layout';
 
-const HitPage: React.FC = () => {
+const HitsPage: React.FC = () => {
 
   return (
     <Layout>
@@ -10,4 +10,4 @@ const HitPage: React.FC = () => {
   );
 };
 
-export default HitPage;
+export default HitsPage;

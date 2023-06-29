@@ -25,7 +25,15 @@ const messages = {
       registerButton: "Crear usuario",
       title: "Registro de usuario",
     },
-
+    hit: {
+      nameLabel: "Nombre", 
+      descriptionLabel: "Descripción",
+      statusLabel: "Estatus",
+      assignLabel: "Asignado a",
+      createLabel: "Creado por",
+      hitButton: "Modificar",
+      title: "Edición de hit",
+    },
   },
 };
 

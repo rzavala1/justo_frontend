@@ -36,5 +36,5 @@ export function useLoginService() {
     }
   }
 
-  return { login, register, };
+  return { login, register };
 }

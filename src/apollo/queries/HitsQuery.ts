@@ -3,15 +3,34 @@ import { gql } from "@apollo/client";
 export const HITS_QUERY = gql`
   query hits {
     hits {
+      id
+      status
+      name
+      description
+      assignId
+      User {
+        id
+        name
+        email
+      }
+    }
+  }
+`;
+
+export const HIT_BY_ID_QUERY = gql`
+  query hits($hitId: Float!) {
+    hit(id: $hitId) {
     id
-    status
     name
+    status
     description
-    assignId
-    User {
+    createUser: createUser {
       id
       name
-      email
+    }
+    assignUser: assignUser { 
+      id
+      name
     }
   }
   }

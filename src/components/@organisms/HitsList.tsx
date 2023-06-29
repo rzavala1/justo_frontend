@@ -4,11 +4,6 @@ import { useRouter } from 'next/router';
 import { useHitsService } from '@/@service/HitsService';
 import TableOptions from '../@molecules/TableOptions';
 
-interface Hit {
-    target: string;
-    status: string;
-    assigned: string;
-}
 
 const HitsList: React.FC = () => {
     const [hits, setHits] = useState([]);
@@ -39,7 +34,7 @@ const HitsList: React.FC = () => {
                                     <div className="flex" key={index}>
                                         <button
                                             onClick={() => {
-                                                router.push(`/locations/edit/${v?.id}`);
+                                                router.push(`/hits/${v?.id}`);
                                             }}
                                         >
                                             Editar

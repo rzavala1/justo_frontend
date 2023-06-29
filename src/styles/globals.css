@@ -12,5 +12,9 @@ input{
   color: black !important;
 }
 .css-qshvj9-MuiFormLabel-root-MuiInputLabel-root{
-  color:rgb(20, 167, 220);
+  color:rgb(9, 59, 77);
+}
+
+.MuiSelect-select{
+  color:#000000;
 }
